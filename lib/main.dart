@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 void main() {
   runApp(
     MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         backgroundColor: Colors.blue,
         appBar: AppBar(
@@ -23,11 +24,19 @@ class Ball extends StatefulWidget {
 }
 
 class _BallState extends State<Ball> {
-  int ballNumber = 1;
+  List ballsList = List();
+  Random random = Random();
+  String currentBall = 'ball1.png';
+
+  @override
+  void initState() {
+    super.initState();
+    ballsList.addAll(['ball1.png', 'ball2.png', 'ball3.png', 'ball4.png', 'ball5.png']);
+  }
 
   void updateAnswerBall() {
     setState(() {
-      ballNumber = Random().nextInt(5) + 1;
+      currentBall = ballsList[random.nextInt(5) + 1];
     });
   }
 
@@ -36,7 +45,7 @@ class _BallState extends State<Ball> {
     return Container(
       child: Center(
         child: FlatButton(
-          child: Image.asset('images/ball$ballNumber.png'),
+          child: Image.asset('images/$currentBall'),
           onPressed: () => updateAnswerBall(),
         ),
       ),
