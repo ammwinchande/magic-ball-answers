@@ -9,15 +9,25 @@ void main() {
           title: Text('Ask Me Anything'),
           backgroundColor: Colors.blue.shade900,
         ),
-        body: BallGame(),
+        body: Ball(),
       ),
     ),
   );
 }
 
-class BallGame extends StatelessWidget {
+class Ball extends StatefulWidget {
+  @override
+  _BallState createState() => _BallState();
+}
+
+class _BallState extends State<Ball> {
+  int ballNumber = 1;
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Container(
+      child: Center(
+        child: Image.asset('images/ball$ballNumber.png'),
+      ),
+    );
   }
 }
